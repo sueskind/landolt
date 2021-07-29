@@ -1,0 +1,5 @@
+wheel~=0.36.2
+wxpython~=4.1.1
+cryptography~=3.4.7
+psychopy~=2021.2.0
+numpy~=1.21.1
