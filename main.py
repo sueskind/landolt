@@ -139,12 +139,19 @@ def load_old_store_new_feedback_value(feedback_file, datestring, new_feedback_va
 
 
 def main():
-    dialog_info = {"Participant": "000"}
-    dialog = gui.DlgFromDict(dialog_info, title="ZSER Crowding Control")
+    monitor = monitors.Monitor(settings.monitor)
+
+    dialog_info = {"Participant": "000",
+                   "X-coordinate PRL": settings.prl_position[0],
+                   "Y-coordinate PRL": settings.prl_position[1],
+                   "X-coordinate oppPRL": settings.opp_position[0],
+                   "Y-coordinate oppPRL": settings.opp_position[1],
+                   "Distance from screen": monitor.getDistance()}
+    fixed = ["X-coordinate PRL", "Y-coordinate PRL", "X-coordinate oppPRL", "Y-coordinate oppPRL",
+             "Distance from screen"]
+    dialog = gui.DlgFromDict(dialog_info, title="ZSER Crowding Control", fixed=fixed, sortKeys=False)
     if not dialog.OK:
         core.quit()
-
-    monitor = monitors.Monitor(settings.monitor)
 
     window = visual.Window(size=monitor.getSizePix(), fullscr=True, color=settings.background_color,
                            colorSpace="rgb255",
