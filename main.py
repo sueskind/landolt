@@ -4,13 +4,13 @@ import random
 from os.path import join
 
 import numpy as np
-from psychopy import core, monitors, visual, event, data, gui
+from psychopy import core, monitors, visual, event, data, gui, sound
 
 import settings
 import texts
 from constants import Labels, landolt_openings
 from paths import landolt_files, RESULTS_DIR, RESULT_DATA_FILE_FMT, RESULT_RESPONSES_FILE_FMT, RESULT_META_FILE_FMT, \
-    FEEDBACK_FILE_FMT
+    FEEDBACK_FILE_FMT, SOUNDS_CORRECT_DIR, SOUNDS_WRONG_DIR
 from settings import opp_position, prl_position
 
 
@@ -190,7 +190,8 @@ def main():
     fixcross = visual.ShapeStim(window, vertices="cross", size=settings.fixcross_size, units="deg")
     fixcross.setColor((0, 0, 0), colorSpace="rgb255")
 
-    sounds = {"correct": [], "wrong": []}  # TODO
+    sounds = {1: [sound.Sound(join(SOUNDS_CORRECT_DIR, f)) for f in os.listdir(SOUNDS_CORRECT_DIR)],  # correct
+              0: [sound.Sound(join(SOUNDS_WRONG_DIR, f)) for f in os.listdir(SOUNDS_WRONG_DIR)]}  # wrong
 
     clock = core.Clock()
     stairs = create_stairs()
@@ -260,6 +261,8 @@ def main():
         else:
             response = int(key_pressed == opening)
         stairs.addResponse(response)
+
+        random.choice(sounds[response]).play()
 
         last_increments[label] = increment
 
