@@ -121,7 +121,7 @@ def create_stairs():
                    "nReversals": reversals}
                   for label, num_trials, reversals in labels_trials_reversals]
 
-    return data.MultiStairHandler(conditions=conditions)
+    return data.MultiStairHandler(conditions=conditions, nTrials=0)
 
 
 def load_old_store_new_feedback_value(feedback_file, datestring, new_feedback_value):
@@ -196,13 +196,11 @@ def main():
     clock = core.Clock()
     stairs = create_stairs()
 
-    print(stairs.nTrials)
-
     fixcross.draw()
     window.flip()
     core.wait(2)
 
-    trials_total = 4 * settings.trials + 2 * settings.trials_easy
+    trials_total = 4 * settings.trials + 2 * settings.trials_easy + settings.trials_fixation
     last_increments = {label: 0 for label in (Labels.PRL_TAN, Labels.PRL_RAD, Labels.OPP_TAN, Labels.OPP_RAD)}
 
     # main loop start
@@ -276,7 +274,7 @@ def main():
 
     data_file.close()
     filename = RESULT_RESPONSES_FILE_FMT.format(participant, datestring)
-    stairs.saveAsExcel(filename)
+    stairs.saveAsExcel(join(session_dir, filename))
 
     new_feedback_value = np.mean(list(last_increments.values()))
     old_feedback_value = load_old_store_new_feedback_value(feedback_file, datestring, new_feedback_value)
