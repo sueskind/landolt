@@ -46,17 +46,17 @@ def await_key(keys):
 
 
 def show_text(window, text, resume_key=None):
-    visual.TextStim(window, text=text).draw()
+    visual.TextStim(window, text=text, height=settings.text_size).draw()
     window.flip()
     if resume_key is not None:
         await_key(resume_key)
 
 
 def show_break_screen(window, progress):
-    visual.TextStim(window, text=texts.break_texts[progress], pos=(0, 3)).draw()
+    visual.TextStim(window, text=texts.break_texts[progress], pos=(0, 3), height=settings.text_size).draw()
 
     for x, text in ((-8, "0%"), (-4, "25%"), (0, "50%"), (4, "75%"), (10.5, "100% geschafft!")):
-        visual.TextStim(window, text=text, pos=(x, -4.5)).draw()
+        visual.TextStim(window, text=text, pos=(x, -4.5), height=settings.text_size).draw()
 
     visual.Rect(window, fillColor=(0.4, 0.3, 0.6), lineColor=(0, 0, 0), width=16, height=1.5, pos=(0, -3)).draw()
     bars = {0.25: (4, -6),
@@ -71,7 +71,7 @@ def show_break_screen(window, progress):
 
 
 def show_feedback_screen(window, old_feedback_value, new_feedback_value):
-    visual.TextStim(window, pos=[0, 5], text=texts.end_text).draw()
+    visual.TextStim(window, pos=[0, 5], text=texts.end_text, height=settings.text_size).draw()
 
     size = 1.5
     bars_spec = (([1, 0, 0], [1, 0, 0], [4.5 * size, -2]),
@@ -88,15 +88,16 @@ def show_feedback_screen(window, old_feedback_value, new_feedback_value):
     for fill_color, line_color, pos in bars_spec:
         visual.Rect(window, fillColor=fill_color, lineColor=line_color, width=size, height=size, pos=pos).draw()
 
-    visual.TextStim(window, pos=[-4.5 * size, -size - 2], text="0 deg").draw()
-    visual.TextStim(window, pos=[4.5 * size, -size - 2], text="10 deg").draw()
+    visual.TextStim(window, pos=[-4.5 * size, -size - 2], text="0 deg", height=settings.text_size).draw()
+    visual.TextStim(window, pos=[4.5 * size, -size - 2], text="10 deg", height=settings.text_size).draw()
 
     position = new_feedback_value - (4 * size)
     visual.Circle(window, fillColor=None, lineColor=[0, 0, 0], radius=(size / 2), pos=[position, -2]).draw()
 
     if old_feedback_value is not None:
         visual.TextStim(window, pos=(0, -(size + 6)),
-                        text=texts.feedback_text_fmt.format(old_feedback_value, new_feedback_value)).draw()
+                        text=texts.feedback_text_fmt.format(old_feedback_value, new_feedback_value),
+                        height=settings.text_size).draw()
 
     window.flip()
     await_key("space")

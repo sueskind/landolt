@@ -1,5 +1,6 @@
 monitor = "testMonitor"  # must be defined in psychopy's settings
 background_color = (133, 133, 133)  # RGB 0-255
+text_size = 0.8
 
 stimuli_size = (0.75, 0.75)  # in deg
 stimuli_time = 0.3  # seconds
