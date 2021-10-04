@@ -17,3 +17,5 @@ trials = 200
 reversals = 1
 trials_easy = int(trials * 0.2)
 trials_fixation = int(trials * 0.8)
+
+wait_after_feedback = 0.15

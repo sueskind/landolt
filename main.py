@@ -267,7 +267,7 @@ def main():
 
         data_file.write(f"{condition},{opening},{increment},{response},{reaction_time},{fixation_detection}\n")
 
-        core.wait(0.1)
+        core.wait(settings.wait_after_feedback)
         fixcross.setOri(0)
         fixcross.draw()
         window.flip()
