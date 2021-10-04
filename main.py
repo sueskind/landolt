@@ -182,17 +182,27 @@ def main():
         f.write(f"screen_size,{monitor.getSizePix()}\n")
         f.write(f"screen_width,{monitor.getWidth()}\n")
 
-    show_text(window, texts.intro_text_1, resume_key="space")
-    show_text(window, texts.intro_text_2, resume_key="space")
+    sounds = {1: [sound.Sound(join(SOUNDS_CORRECT_DIR, f)) for f in os.listdir(SOUNDS_CORRECT_DIR)],  # correct
+              0: [sound.Sound(join(SOUNDS_WRONG_DIR, f)) for f in os.listdir(SOUNDS_WRONG_DIR)]}  # wrong
+
+    for text in texts.intro_texts:
+        show_text(window, text, resume_key="space")
+
+    show_text(window, texts.soundcheck_text)
+
+    key_pressed = await_key(["N", "P", "space"])
+    while key_pressed != "space":
+        if key_pressed == "N":
+            random.choice(sounds[0]).play()
+        if key_pressed == "P":
+            random.choice(sounds[0]).play()
+        key_pressed = await_key(["N", "P", "space"])
 
     target = visual.ImageStim(window, size=settings.stimuli_size, units="deg")
     flanker1 = visual.ImageStim(window, size=settings.stimuli_size, image=landolt_files["full"], units="deg")
     flanker2 = visual.ImageStim(window, size=settings.stimuli_size, image=landolt_files["full"], units="deg")
     fixcross = visual.ShapeStim(window, vertices="cross", size=settings.fixcross_size, units="deg")
     fixcross.setColor((0, 0, 0), colorSpace="rgb255")
-
-    sounds = {1: [sound.Sound(join(SOUNDS_CORRECT_DIR, f)) for f in os.listdir(SOUNDS_CORRECT_DIR)],  # correct
-              0: [sound.Sound(join(SOUNDS_WRONG_DIR, f)) for f in os.listdir(SOUNDS_WRONG_DIR)]}  # wrong
 
     clock = core.Clock()
     stairs = create_stairs()

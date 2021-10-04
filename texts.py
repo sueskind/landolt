@@ -1,12 +1,19 @@
-intro_text_1 = """Im Folgenden werden Ihnen sogenannte Landolt-C-Reize gezeigt. Dabei handelt es sich um Ringe, die eine Öffnung in eine bestimmte Richtung haben. Ihre Aufgabe ist es, die Öffnung der Ringe zu entdecken und entsprechend mit den Pfeiltasten zu antworten.
+intro_texts = [
+    """Im Folgenden werden dir sogenannte Landolt-C-Reize gezeigt, d. h. es wird irgendwo in der Umgebung des Fixationskreuzes kurz ein Kreis mit einer Öffnung gezeigt, die entweder nach links, oben, rechts oder nach unten zeigt.""",
+    """Deine Aufgabe ist es, die Öffnung der Ringe zu erkennen und entsprechend mit den Pfeiltasten zu antworten, also die Pfeiltaste 'oben' zu drücken, wenn die Öffnung oben ist, die Pfeiltaste 'links', wenn die Öffnung links ist, usw.""",
+    """WICHTIG ist dabei, dass du das gesamte Experiment über, das Fixationskreuz im Zentrum des Bildschirms fixierst.
+Um zu überprüfen, ob dein Blick auch tatsächlich auf das Fixationskreuz fokussiert ist, wird bei manchen Trails (ein Trial ist das kurze Anzeigen eines Landolt-C-Reizes) das Fixationskreuz ein kleines Stück nach links oder rechts verdreht.
+Wenn du das bemerkst, sollst du NICHT die erkannte Öffnung des Landolt-C-Reizes angeben, sondern nur die Leertaste drücken. 
+Sobald das Fixationskreuz wieder in einer Ursprungsposition, also aufrecht im Zentrum des Bildschirms ist, reagiere bitte wieder auf die Öffnung des Landolt-C-Reizes."""
+]
 
-Drücken Sie also die Pfeiltaste 'oben', wenn die Öffnung oben ist, die Pfeiltaste 'links', wenn die Öffnung links ist usw. Fixieren Sie bitte während des gesamten Experiments stets das Fixationskreuz im Zentrum des Bildschirms!
+soundcheck_text = """Nach jedem Trail erhältst du Feedback zur Richtigkeit deiner Antwort in Form von verschiedenen Tönen oder eines verbalen Feedbacks. 
 
-Drücken Sie die Leertaste um fortzufahren!"""
+Du kannst jetzt auf die Taste P drücken, um dir ein Beispiel eines positiven Feedbacks anzuhören.
+Wenn du auf die Taste N drückst, kannst du dir das Beispiel eines negativen Feedbacks anhören.
 
-intro_text_2 = """Weiterhin wird in einigen Durchgängen das Fixationskreuz sich ein kleines Stück um seine eigene Achse drehen. Wenn Sie eine solche Drehung erkennen, drücken Sie bitte die Leertaste, anstelle auf die Öffnung zu reagieren. Drücken Sie dabei nur die Leertaste, wenn das Kreuz gedreht ist und nicht, wenn es sich wieder zurückdreht.
-
-Drücken Sie nun die Leertaste, um mit dem Versuch zu beginnen!"""
+Drücken Sie nun die Leertaste, um mit dem Versuch zu beginnen!
+"""
 
 break_texts = {
     0.25: """Sie haben nun ungefähr ein Viertel der Übung geschafft. Sie können sich daher eine kleine Pause nehmen.
