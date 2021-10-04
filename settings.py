@@ -13,7 +13,7 @@ fixcross_rotation = 6.5  # +- degress
 stairs_step_size = 0.1
 stairs_start = 2.5
 
-trials = 200
+trials = 125
 reversals = 1
 trials_easy = int(trials * 0.2)
 trials_fixation = int(trials * 0.8)
