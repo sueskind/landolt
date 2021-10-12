@@ -283,7 +283,7 @@ def main():
         fixcross.setOri(0)
         fixcross.draw()
         window.flip()
-        core.wait(0.5)
+        core.wait(settings.wait_inbetween_stimuli)
 
     data_file.close()
     filename = RESULT_RESPONSES_FILE_FMT.format(participant, datestring)
