@@ -274,7 +274,7 @@ def main():
                 response = Sounds.FIXWRONG
         else:
             response = int(key_pressed == opening)
-        stairs.addResponse(response)
+        stairs.addResponse(int(response == Sounds.CORRECT))
 
         random.choice(sounds[response]).play()
 
