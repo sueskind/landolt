@@ -68,6 +68,7 @@ def show_break_screen(window, progress):
 
     window.flip()
     await_key("space")
+    window.flip()
     core.wait(1)
 
 
