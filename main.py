@@ -190,13 +190,15 @@ def main():
 
     show_text(window, texts.soundcheck_text)
 
-    key_pressed = await_key(["N", "P", "space"])
+    key_pressed = await_key(["n", "p", "space"])
     while key_pressed != "space":
-        if key_pressed == "N":
+        if key_pressed == "n":
             random.choice(sounds[0]).play()
-        if key_pressed == "P":
-            random.choice(sounds[0]).play()
-        key_pressed = await_key(["N", "P", "space"])
+            core.wait(1)
+        if key_pressed == "p":
+            random.choice(sounds[1]).play()
+            core.wait(1)
+        key_pressed = await_key(["n", "p", "space"])
 
     target = visual.ImageStim(window, size=settings.stimuli_size, units="deg")
     flanker1 = visual.ImageStim(window, size=settings.stimuli_size, image=landolt_files["full"], units="deg")
