@@ -7,6 +7,7 @@ ASSETS_DIR = join(PROJECT_ROOT, "assets")
 SOUNDS_DIR = join(ASSETS_DIR, "sounds")
 SOUNDS_CORRECT_DIR = join(SOUNDS_DIR, "correct")
 SOUNDS_WRONG_DIR = join(SOUNDS_DIR, "wrong")
+SOUNDS_FIXWRONG_DIR = join(SOUNDS_DIR, "fix-wrong")
 
 IMAGES_DIR = join(ASSETS_DIR, "images")
 landolt_files = {direction: join(IMAGES_DIR, f"landolt_{direction}.png")

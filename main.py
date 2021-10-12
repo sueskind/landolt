@@ -8,9 +8,9 @@ from psychopy import core, monitors, visual, event, data, gui, sound
 
 import settings
 import texts
-from constants import Labels, landolt_openings
+from constants import Labels, landolt_openings, Sounds
 from paths import landolt_files, RESULTS_DIR, RESULT_DATA_FILE_FMT, RESULT_RESPONSES_FILE_FMT, RESULT_META_FILE_FMT, \
-    FEEDBACK_FILE_FMT, SOUNDS_CORRECT_DIR, SOUNDS_WRONG_DIR
+    FEEDBACK_FILE_FMT, SOUNDS_CORRECT_DIR, SOUNDS_WRONG_DIR, SOUNDS_FIXWRONG_DIR
 from settings import opp_position, prl_position
 
 
@@ -182,8 +182,9 @@ def main():
         f.write(f"screen_size,{monitor.getSizePix()}\n")
         f.write(f"screen_width,{monitor.getWidth()}\n")
 
-    sounds = {1: [sound.Sound(join(SOUNDS_CORRECT_DIR, f)) for f in os.listdir(SOUNDS_CORRECT_DIR)],  # correct
-              0: [sound.Sound(join(SOUNDS_WRONG_DIR, f)) for f in os.listdir(SOUNDS_WRONG_DIR)]}  # wrong
+    sounds = {Sounds.CORRECT: [sound.Sound(join(SOUNDS_CORRECT_DIR, f)) for f in os.listdir(SOUNDS_CORRECT_DIR)],
+              Sounds.WRONG: [sound.Sound(join(SOUNDS_WRONG_DIR, f)) for f in os.listdir(SOUNDS_WRONG_DIR)],
+              Sounds.FIXWRONG: [sound.Sound(join(SOUNDS_FIXWRONG_DIR, f)) for f in os.listdir(SOUNDS_FIXWRONG_DIR)]}
 
     for text in texts.intro_texts:
         show_text(window, text, resume_key="space")
@@ -193,10 +194,10 @@ def main():
     key_pressed = await_key(["n", "p", "space"])
     while key_pressed != "space":
         if key_pressed == "n":
-            random.choice(sounds[0]).play()
+            random.choice(sounds[Sounds.WRONG]).play()
             core.wait(1)
         if key_pressed == "p":
-            random.choice(sounds[1]).play()
+            random.choice(sounds[Sounds.CORRECT]).play()
             core.wait(1)
         key_pressed = await_key(["n", "p", "space"])
 
@@ -268,7 +269,9 @@ def main():
         if label == Labels.FIXATION:
             if key_pressed == "space":
                 fixation_detection = key_pressed
-            response = int(key_pressed == "space")
+                response = Sounds.CORRECT
+            else:
+                response = Sounds.FIXWRONG
         else:
             response = int(key_pressed == opening)
         stairs.addResponse(response)

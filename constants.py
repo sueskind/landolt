@@ -8,4 +8,10 @@ class Labels:
     FIXATION = "fixation"
 
 
+class Sounds:
+    WRONG = 0
+    FIXWRONG = -1
+    CORRECT = 1
+
+
 landolt_openings = ("up", "down", "left", "right")
