@@ -68,6 +68,7 @@ def show_break_screen(window, progress):
 
     window.flip()
     await_key("space")
+    core.wait(1)
 
 
 def show_feedback_screen(window, old_feedback_value, new_feedback_value):
@@ -100,6 +101,7 @@ def show_feedback_screen(window, old_feedback_value, new_feedback_value):
                         height=settings.text_size).draw()
 
     window.flip()
+    core.wait(5)
     await_key("space")
 
 
