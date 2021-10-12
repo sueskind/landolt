@@ -13,10 +13,10 @@ fixcross_rotation = 6.5  # +- degress
 stairs_step_size = 0.1
 stairs_start = 2.5
 
-trials = 125
-reversals = 1
-trials_easy = int(trials * 0.2)
-trials_fixation = int(trials * 0.8)
+trials_flanker = 200
+trials_easy = 80
+trials_fixation = 100
+reversals = 8
 
 wait_after_feedback = 0.15
 wait_inbetween_stimuli = 0.8

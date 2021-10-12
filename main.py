@@ -104,10 +104,10 @@ def show_feedback_screen(window, old_feedback_value, new_feedback_value):
 
 
 def create_stairs():
-    labels_trials_reversals = ((Labels.PRL_TAN, settings.trials, settings.reversals),
-                               (Labels.PRL_RAD, settings.trials, settings.reversals),
-                               (Labels.OPP_TAN, settings.trials, settings.reversals),
-                               (Labels.OPP_RAD, settings.trials, settings.reversals),
+    labels_trials_reversals = ((Labels.PRL_TAN, settings.trials_flanker, settings.reversals),
+                               (Labels.PRL_RAD, settings.trials_flanker, settings.reversals),
+                               (Labels.OPP_TAN, settings.trials_flanker, settings.reversals),
+                               (Labels.OPP_RAD, settings.trials_flanker, settings.reversals),
                                (Labels.PRL_NOFL, settings.trials_easy, None),
                                (Labels.OPP_NOFL, settings.trials_easy, None),
                                (Labels.FIXATION, settings.trials_fixation, None))
@@ -214,7 +214,7 @@ def main():
     window.flip()
     core.wait(2)
 
-    trials_total = 4 * settings.trials + 2 * settings.trials_easy + settings.trials_fixation
+    trials_total = 4 * settings.trials_flanker + 2 * settings.trials_easy + settings.trials_fixation
     last_increments = {label: 0 for label in (Labels.PRL_TAN, Labels.PRL_RAD, Labels.OPP_TAN, Labels.OPP_RAD)}
 
     # main loop start
