@@ -283,7 +283,7 @@ def main():
 
         last_increments[label] = increment
 
-        data_file.write(f"{condition},{opening},{increment},{response},{reaction_time},{fixation_detection}\n")
+        data_file.write(f"{label},{opening},{increment},{response},{reaction_time},{fixation_detection}\n")
 
         core.wait(settings.wait_after_feedback)
         fixcross.setOri(0)
